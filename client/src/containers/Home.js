@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import CustomButton from '../components/Button';
 
 const Home = ({ socket }) => {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const Home = ({ socket }) => {
         value={userName}
         onChange={(e) => setUserName(e.target.value)}
       />
-      <button className="home__cta">SIGN IN</button>
+      <CustomButton type="submit">SIGN IN</CustomButton>
     </form>
   );
 };

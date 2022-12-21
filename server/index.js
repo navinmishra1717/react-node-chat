@@ -30,7 +30,7 @@ socketIO.on("connection", (socket) => {
     users.push({
       ...data,
       userId: users.length + 1,
-      imageUrl: "https://images.app.goo.gl/cB5Yo7TSd9TnkeheA",
+      imageUrl: "",
     });
     //Sends the list of users to the client
     socketIO.emit("newUserResponse", users);

@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const ChatBar = ({ socket }) => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    socket.on('newUserResponse', (data) => setUsers(data));
+    socket.on('newUserResponse', (data) => {
+      setUsers(data);
+      localStorage.setItem('userData', JSON.stringify(data));
+    });
   }, [socket, users]);
 
   return (
@@ -15,7 +19,9 @@ const ChatBar = ({ socket }) => {
         <h4 className="chat__header">ACTIVE USERS</h4>
         <div className="chat__users">
           {users.map((user) => (
-            <p key={user.socketID}>{user.userName}</p>
+            <NavLink to={`/profile/${user.userId}`} key={user.userId}>
+              {user.userName}
+            </NavLink>
           ))}
         </div>
       </div>
