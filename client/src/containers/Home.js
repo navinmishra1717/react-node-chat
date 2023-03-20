@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CustomButton from '../components/Button';
+import Test from './test';
 
 const Home = ({ socket }) => {
   const navigate = useNavigate();
@@ -15,20 +16,23 @@ const Home = ({ socket }) => {
   };
 
   return (
-    <form className="home__container" onSubmit={handleSubmit}>
-      <h2 className="home__header">Sign in to Open Chat</h2>
-      <label htmlFor="username">Username</label>
-      <input
-        type="text"
-        minLength={6}
-        name="username"
-        id="username"
-        className="username__input"
-        value={userName}
-        onChange={(e) => setUserName(e.target.value)}
-      />
-      <CustomButton type="submit">SIGN IN</CustomButton>
-    </form>
+    <>
+      <Test />
+      <form className="home__container" onSubmit={handleSubmit}>
+        <h2 className="home__header">Sign in to Open Chat</h2>
+        <label htmlFor="username">Username</label>
+        <input
+          type="text"
+          minLength={6}
+          name="username"
+          id="username"
+          className="username__input"
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
+        />
+        <CustomButton type="submit">SIGN IN</CustomButton>
+      </form>
+    </>
   );
 };
 
