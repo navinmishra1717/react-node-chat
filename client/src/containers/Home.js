@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CustomButton from '../components/Button';
 
-const Home = ({ socket }) => {
+const HomePage = ({ socket }) => {
   const navigate = useNavigate();
   const [userName, setUserName] = useState('');
 
@@ -32,4 +32,4 @@ const Home = ({ socket }) => {
   );
 };
 
-export default Home;
+export default HomePage;
