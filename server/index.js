@@ -2,10 +2,15 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const http = require("http");
+const path = require("path");
+const { Server } = require("socket.io");
 const PORT = 4000;
 
-const httpServer = http.Server(app);
+const httpServer = http.createServer(app);
+// app.use(express.static(path.resolve("./public")));
 app.use(cors());
+
+const io = new Server(httpServer);
 
 const socketIO = require("socket.io")(httpServer, {
   cors: {
@@ -14,6 +19,13 @@ const socketIO = require("socket.io")(httpServer, {
 });
 
 let users = [];
+
+io.on("connection", (socket) => {
+  console.log(`⚡: ${socket.id} user just connected!`);
+  socket.on("user-message", (message) => {
+    console.log("A New user message", message);
+  });
+});
 
 socketIO.on("connection", (socket) => {
   console.log(`⚡: ${socket.id} user just connected!`);
